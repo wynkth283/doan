@@ -21,7 +21,7 @@
                         <% if nguoidung.AnhDaiDien.present? %>
                             <a href="#"><%= image_tag nguoidung.AnhDaiDien.url, class: "admin-avt-img" %></a>
                         <% else %>
-                            <a href="#"><%= image_tag 'icon/admin-panel', class: "admin-avt-img" %></a>
+                            <a href="#"><i class="fas fa-user admin-avt-img"></i></a>
                         <% end %>
                 <% end %>
             </div>
