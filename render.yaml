@@ -1,0 +1,27 @@
+# Exported from Render on 2024-06-25T11:57:19Z
+databases:
+- name: doan
+  databaseName: doan_vij0
+  user: hungthinh
+  plan: free
+  region: oregon
+  ipAllowList:
+  - source: 0.0.0.0/0
+    description: everywhere
+  postgresMajorVersion: "15"
+services:
+- type: web
+  name: doan
+  runtime: ruby
+  repo: https://github.com/wynkth283/doan
+  plan: free
+  envVars:
+  - key: RAILS_MASTER_KEY
+    sync: false
+  - key: WEB_CONCURRENCY
+    sync: false
+  region: oregon
+  buildCommand: bundle install; bundle exec rake assets:precompile; bundle exec rake
+    assets:clean;
+  startCommand: bundle exec puma -t 5:5 -p ${PORT:-3000} -e ${RACK_ENV:-development}
+version: "1"
