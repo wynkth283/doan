@@ -60,9 +60,11 @@
     margin-top: 10px;
 }
 
-.icon img {
+.icon i {
     width: 30px;
     height: 30px;
+    padding: 5px 0 0 7px;
+    color: salmon;
 }
 
 .iconn {
