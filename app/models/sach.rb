@@ -4,9 +4,9 @@ class Sach < ApplicationRecord
   belongs_to :danh_muc
   def self.search(query)
     if query.to_i.to_s == query # Check if the query is a numeric string
-      where("id = ? OR \"TenSach\" LIKE ?", query.to_i, "%#{query}%")
+      where("id = ? OR \"TenSach\" ILIKE ?", query.to_i, "%#{query}%")
     else
-      where("\"TenSach\" LIKE ?", "%#{query}%")
+      where("\"TenSach\" ILIKE ?", "%#{query}%")
     end
   end
 
