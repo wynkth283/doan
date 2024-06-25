@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý danh mục sách</title>
+    <style>
+      body {
+          font-family: Arial, sans-serif;
+          background-color: #f4f4f4;
+          margin: 0;
+          padding: 0;
+      }
+
+      .header {
+          padding: 30px;
+          font-weight: bold;
+          font-size: 20px;
+          border-bottom: 1px solid #ddd;
+          background-color: #fff;
+      }
+
+      #admin_danh_muc_saches {
+          padding: 20px;
+          background-color: #fff;
+          margin: 20px auto;
+          max-width: 800px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      table {
+          width: 100%;
+          border-collapse: collapse;
+      }
+
+      tr {
+          background-color: #f9f9f9;
+      }
+
+      tr:nth-child(even) {
+          background-color: #fff;
+      }
+
+      tr:hover {
+          background-color: #f1f1f1;
+      }
+
+      tr td {
+          border-bottom: 1px solid #c5c5c5;
+          padding: 10px;
+          vertical-align: middle;
+      }
+      tr th {
+        border-bottom: 1px solid #c5c5c5;
+        padding: 10px 0 10px 10%;
+        vertical-align: middle;
+        
+      }
+      .Edit {
+          border: 1px solid;
+          padding: 5px 10px;
+          color: black;
+          text-decoration: none;
+          display: inline-block;
+      }
+
+      .Edit:hover {
+          background-color: black;
+          color: white;
+          transition: all 0.3s ease;
+      }
+    </style>
+</head>
+<body>
+    <div class="notice"><%= notice %></div>
+
+    <div class="header">Quản lý danh mục sách</div>
+
+    <div id="admin_danh_muc_saches">
+        <table cellspacing="0">
+            <% @danh_mucs.each do |danh_muc| %>
+                <tr>
+                    <td><%= danh_muc.id %>. <%= danh_muc.TenDM %></td>
+                    <th><%= link_to 'Chỉnh Sửa', edit_danh_muc_path(danh_muc), class: "Edit" %></th>
+                </tr>
+            <% end %>
+        </table>
+    </div>
+</body>
+</html>
+
+
+

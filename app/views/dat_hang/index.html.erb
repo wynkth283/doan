@@ -1,0 +1,92 @@
+<%= stylesheet_link_tag 'style_delivery' %>
+<!--------------------------------------delivery-->
+<section class="delivery">
+    <div class="container">
+        <div class="delivery-content">
+            <div class="delivery-content-left">
+                <div class="headerr">
+                    <p style="padding: 30px 30px 30px 30px; font-weight: bold; font-size: 20px; border-bottom: 1px solid #dddd;">
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                        <%= link_to 'Trang chủ', root_path %>
+                        <%= image_tag 'icon/right-arrow.png', style:"padding: 0 5px 0 5px;" %>
+                        <%= link_to 'Giỏ hàng', carts_index_path %>
+                        <%= image_tag 'icon/right-arrow.png', style:"padding-left: 5px" %> Đặt hàng
+                    </p>
+                </div>
+                
+                <%= form_with(model: @don_dat_hang, url: don_dat_hangs_path, method: :post, local: true) do |f| %>
+                    <table class="delivery-thongtin-dangky">
+                        <tr>
+                            <th><p>Tên người dùng<span style="color: red;">*</span></p></th>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><%= f.text_field :TenND, value: @nguoidung.TenND, required: true, style: "width: 100%;" %></td>
+                        </tr>
+                        <tr>
+                            <th><p>Điện thoại<span style="color: red;">*</span></p></th>
+                            <th><p>Email<span style="color: red;">*</span></p></th>
+                        </tr>
+                        <tr>
+                            <td><%= f.telephone_field :SDT, value: @nguoidung.SDT, required: true %></td>
+                            <td><%= f.email_field :Email, value: @nguoidung.Email, required: true %></td>
+                        </tr>
+                        <tr>
+                            <th><p>Địa chỉ<span style="color: red;">*</span></p></th>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><%= f.text_field :DiaChi, value: @nguoidung.DiaChi, required: true, style: "width: 100%;" %></td>
+                        </tr>
+                    </table>
+                    
+                    <%= f.hidden_field :nguoidung_id, value: @nguoidung.id %>
+                    <%= f.hidden_field :ChiTiet, value: @gio_hangs.map { |gh| "#{gh.TenSach} - SL: #{gh.soluong}" }.join(", ") %>
+                    <%= f.hidden_field :TongTien, value: @gio_hangs.sum { |dh| dh.Gia * dh.soluong } %>
+                    <%= f.hidden_field :NgayDat, value: Date.today %>
+                    
+                    <div class="delivery-content-left-button" style="cursor: pointer;">
+                        <button type="submit">
+                            <p>Đặt hàng ngay</p>
+                        </button>
+                        <%= link_to carts_index_path do %>
+                            <button type="button">Trở lại giỏ hàng</button>
+                        <% end %>
+                    </div>
+                <% end %>
+            </div>
+            
+            <div class="delivery-content-right">
+                <table>
+                    <tr>
+                        <td colspan="2">
+                            <img src="icon/list.png" alt="" style="padding-right: 5px;">CHI TIẾT THANH TOÁN
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr style="background-color: #dddd;">
+                        <td style="border: 1px solid #dddd;">Tên sản phẩm</td>
+                        <td>Số lượng</td>
+                        <td>Thành tiền</td> 
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <hr style="border: 1px solid #dddd;">
+                        </td>
+                    </tr>
+                    <% @gio_hangs.each do |gio_hang| %>
+                    <tr>
+                        <td><%= gio_hang.TenSach %></td>
+                        <td style="padding-left: 20px;"><%= gio_hang.soluong %></td>
+                        <td><%= number_to_currency(gio_hang.thanhtien, unit: 'đ') %><sup>đ</sup></td>
+                    </tr>
+                    <% end %>
+                    <tr>
+                        <td style="font-size: 14px; background-color: #dddd" colspan="2">Tổng tiền hàng</td>
+                        <td style="background-color: #dddd"><%= number_to_currency(@gio_hangs.sum { |dh| dh.Gia * dh.soluong }, unit: 'đ') %><sup>đ</sup></td>
+                    </tr>
+                </table>  
+            </div>
+        </div>
+    </div>   
+</section>
+
+

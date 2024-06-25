@@ -1,0 +1,57 @@
+<%= form_with(model: don_dat_hang) do |form| %>
+  <% if don_dat_hang.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(don_dat_hang.errors.count, "error") %> prohibited this don_dat_hang from being saved:</h2>
+
+      <ul>
+        <% don_dat_hang.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :nguoidung_id, style: "display: block" %>
+    <%= form.text_field :nguoidung_id %>
+  </div>
+
+  <div>
+    <%= form.label :TenND, style: "display: block" %>
+    <%= form.text_field :TenND %>
+  </div>
+
+  <div>
+    <%= form.label :Email, style: "display: block" %>
+    <%= form.text_field :Email %>
+  </div>
+
+  <div>
+    <%= form.label :SDT, style: "display: block" %>
+    <%= form.text_field :SDT %>
+  </div>
+
+  <div>
+    <%= form.label :DiaChi, style: "display: block" %>
+    <%= form.text_field :DiaChi %>
+  </div>
+
+  <div>
+    <%= form.label :ChiTiet, style: "display: block" %>
+    <%= form.text_field :ChiTiet %>
+  </div>
+
+  <div>
+    <%= form.label :TongTien, style: "display: block" %>
+    <%= form.number_field :TongTien %>
+  </div>
+
+  <div>
+    <%= form.label :NgayDat, style: "display: block" %>
+    <%= form.date_field :NgayDat %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

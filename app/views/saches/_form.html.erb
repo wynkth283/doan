@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Sách</title>
+    <style>
+        * {
+            outline: none;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .form_sach {
+            margin: 30px auto 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            max-width: 600px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border-radius:10px;
+        }
+        .form_sach tr th, .form_sach tr td {
+            border-bottom: 1px solid rgb(197, 197, 197);
+            padding: 10px;
+            text-align: left;
+        }
+        .form_sach tr th {
+            padding-left: 5px;
+            width: 200px;
+        }
+        .text_field_id, .text_field {
+            padding: 5px;
+            width: calc(100% - 12px);
+            box-sizing: border-box;
+        }
+        .text_field_id {
+            border: none;
+        }
+        .left {
+          margin-left: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="form_sach">
+        <%= form_with(model: sach) do |form| %>
+            <% if sach.errors.any? %>
+                <div class="error-messages">
+                    <h2><%= pluralize(sach.errors.count, "error") %> prohibited this sach from being saved:</h2>
+                    <ul>
+                        <% sach.errors.each do |error| %>
+                            <li><%= error.full_message %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            <% end %>
+
+            <table cellspacing="0">
+                <tr>
+                    <th><%= form.label :ID, style: "display: block" %></th>
+                    <td><%= form.text_field :id, readonly: true, class: "text_field_id" %></td>
+                </tr>
+                <tr>
+                    <th><%= form.label :TenSach, style: "display: block" %></th>
+                    <td><%= form.text_field :TenSach, class: "text_field" %></td>
+                </tr>
+                <tr>
+                    <th><%= form.label :AnhMinhHoa, style: "display: block" %></th>
+                    <td><%= form.file_field :AnhMinhHoa %></td>
+                </tr>
+                <tr>
+                    <th><%= form.label :Tacgia, style: "display: block" %></th>
+                    <td><%= form.text_field :Tacgia, class: "text_field" %></td>
+                </tr>
+                <tr>
+                    <th><%= form.label :danh_muc_id, style: "display: block" %></th>
+                    <td><%= form.collection_select :danh_muc_id, DanhMuc.all, :id, :TenDM, prompt: "Chọn danh mục sách", class: "text_field_id" %></td>
+                </tr>
+                <tr>
+                    <th><%= form.label :Mota, style: "display: block" %></th>
+                    <td><%= form.text_area :Mota, cols: "60", rows: "10" %></td>
+                </tr>
+                <tr>
+                    <th><%= form.label :NXB, style: "display: block" %></th>
+                    <td><%= form.text_field :NXB, class: "text_field" %></td>
+                </tr>
+                <tr>
+                    <th><%= form.label :Gia, style: "display: block" %></th>
+                    <td><%= form.number_field :Gia, class: "text_field", min: "0" %></td>
+                </tr>
+            </table>
+            <%= form.submit 'Cập nhật', class: 'Update left' %>
+        <% end %>
+    </div>
+</body>
+</html>

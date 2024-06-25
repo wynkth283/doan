@@ -1,0 +1,58 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    box-sizing: border-box;
+}
+
+.form_themtk {
+    height: 380px;
+    width: 800px;
+    position: absolute;
+    background-color: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 5px 10px rgba(0,0,0,1);
+    transform: translate(-50%,-50%);
+    top: 35%;
+    left: 60%;
+    padding: 10px 0 0px 0;
+}
+.themtk {
+    padding: 30px 0 0 65px;
+}
+.themtk td{
+    padding: 5px 20px;
+    text-align: right;
+}
+.themtk th{
+    text-align: left;
+}
+
+.themtk td input{
+    width: 100%;
+    padding: 5px;
+}
+
+select {
+    width: 100%;
+    padding: 5px;
+}
+
+.Edit {
+    border: 1px solid #c7c7c7dd;
+    border-radius: 10px;
+    width: 200px;
+    text-align: center;
+    padding: 5px;
+    margin: 15px auto 5px auto;
+    box-shadow: 0 0 3px 3px rgba(0.4,0,0,0.1);
+}
+.Edit a {
+    color: #2d2c2c;
+    text-decoration: none;  
+}
+.Edit:hover {
+    box-shadow: 0 0 5px 5px rgba(0.4,0,0,0.3);
+}

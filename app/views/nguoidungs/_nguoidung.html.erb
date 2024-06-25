@@ -1,0 +1,14 @@
+<%= stylesheet_link_tag 'nguoidungs', media: 'all', 'data-turbolinks-track': 'reload' %>
+<div id="<%= dom_id nguoidung %>">
+      <div class="avatar">
+        <img src="<%= nguoidung.AnhDaiDien.url %>" alt="Ảnh Đại Diện">
+      </div>
+      <div class="user-info">
+        <p><strong>Tên:</strong> <%= nguoidung.TenND %></p>
+        <p><strong>Email:</strong> <%= nguoidung.Email %></p>
+        <p><strong>Địa chỉ:</strong> <%= nguoidung.DiaChi %></p>
+        <p><strong>SĐT:</strong> <%= nguoidung.SDT %></p>
+        <p><strong>Mật khẩu:</strong> <%= nguoidung.MatKhau %></p>
+        <p><strong>Loại quyền:</strong> <%= nguoidung.loai_quyen_id %></p>
+      
+    

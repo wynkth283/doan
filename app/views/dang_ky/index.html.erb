@@ -1,0 +1,43 @@
+<%= stylesheet_link_tag 'dangky' %>
+<form action="/dang_ky" method="post" enctype="multipart/form-data" class="form_dk">
+  <p class="header">ĐĂNG KÝ TÀI KHOẢN</p>
+  <table class="thongtin-dangky">
+    <tr class="form-group">
+      <th><label for="ten_nd">Tên người dùng:</label> <span style="color: red;">*</span></th>
+      <td colspan="3"><input type="text" class="form-control" id="ten_nd" name="nguoidung[TenND]" required></td>
+    </tr>
+    <tr class="form-group">
+      <th><label for="anh_dai_dien">Ảnh đại diện</label></th>
+      <td colspan="3"><input type="file" class="form-control-file" id="anh_dai_dien" name="nguoidung[AnhDaiDien]"></td>
+    </tr>
+    <tr class="form-group">
+      <th><label for="sdt">Số điện thoại:</label><span style="color: red;">*</span></th>
+      <td><input type="number" class="form-control" id="sdt" name="nguoidung[SDT]" min="0" required></td>
+      <th><label for="email">Email:</label><span style="color: red;">*</span></th>
+      <td><input type="email" class="form-control" id="email" name="nguoidung[Email]" placeholder="Nhập Email của bạn" required></td>
+    </tr>
+    <tr class="form-group">
+      <th><label for="mat_khau">Mật khẩu:</label><span style="color: red;">*</span></th>
+      <td><input type="password" class="form-control" id="mat_khau" name="nguoidung[MatKhau]" required></td>
+    </tr>
+    <tr class="form-group">
+      <th><label for="dia_chi">Địa chỉ:</label><span style="color: red;">*</span></th>
+      <td colspan="3"><input type="text" class="form-control" id="dia_chi" name="nguoidung[DiaChi]" required></td>
+    </tr>
+    <tr class="form-group">
+      <input type="hidden" name="nguoidung[loai_quyen]" value="2">
+      <td colspan="4"><button type="submit" class="">Đăng ký</button></td>
+    </tr>
+    <tr class="form-group">
+      <td colspan="4">
+        <p style="text-align: center;">Đã có tài khoản? <a href="#"><%= link_to 'Đăng nhập', dang_nhap_index_path, style:"color: red;"%></a></p>
+      </td>
+    </tr>
+    <tr class="form-group">
+      <td colspan="2" style="display: flex; width: 160px; margin-top: 12%;">
+        <%= image_tag 'icon/arrow-left.png', width: "15px", height: "15px" %>
+        <p style="padding-left: 5px;"><%= link_to 'Về trang chủ', root_path %></p>
+      </td>
+    </tr>
+  </table>
+</form>

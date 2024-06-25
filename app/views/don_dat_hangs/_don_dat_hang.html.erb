@@ -1,0 +1,41 @@
+<div id="<%= dom_id don_dat_hang %>">
+<div class="don_dat_hang">
+    <div class="don_dat_hang_info">
+      <p>
+        <strong>Người dùng:</strong>
+        <%= don_dat_hang.nguoidung_id %>
+      </p>
+      <p>
+        <strong>Tên ND:</strong>
+        <%= don_dat_hang.TenND %>
+      </p>
+      <p>
+        <strong>Email:</strong>
+        <%= don_dat_hang.Email %>
+      </p>
+      <p>
+        <strong>SĐT:</strong>
+        <%= don_dat_hang.SDT %>
+      </p>
+      <p>
+        <strong>Địa chỉ:</strong>
+        <%= don_dat_hang.DiaChi %>
+      </p>
+      <p>
+        <strong>Chi tiết:</strong>
+        <%= don_dat_hang.ChiTiet %>
+      </p>
+      <p>
+        <strong>Tổng tiền:</strong>
+        <%= don_dat_hang.TongTien %>
+      </p>
+      <p>
+        <strong>Ngày đặt:</strong>
+        <%= don_dat_hang.NgayDat %>
+      </p>
+    </div>
+      <div class="don_dat_hang_actions">
+        <%= button_to "Xóa đơn đặt hàng này", don_dat_hang_path(don_dat_hang), method: :delete, class: "btn btn-danger" %>
+      </div>
+  </div>
+</div>

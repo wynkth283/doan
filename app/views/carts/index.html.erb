@@ -1,0 +1,139 @@
+<%= stylesheet_link_tag 'style_carts' %>
+<body id="loginForm">
+<!----------------------Cart-->
+    <section class="cart">
+        <div class="container">
+            <div class="cart-content">
+                <div class="cart-content-left">
+                    <div class="headerr">
+                        <p style="padding: 0px 30px 30px 30px; font-weight: bold; font-size: 20px; border-bottom: 1px solid #dddd;"><i class="fa fa-home" aria-hidden="true"></i><%= link_to 'Trang chủ', home_index_path %><%= image_tag 'icon/right-arrow.png', style:"padding-left: 5px" %> Giỏ hàng</p>
+                    </div>
+                    <table class="cart-table-content" cellspacing="0">
+                        <% if @gio_hangs.empty? %>
+                            <div class="khongcodon">Giỏ hàng trống</div>
+                        <% else %>
+                            <% @gio_hangs.each do |gio_hang| %>
+                                <tr>
+                                <td><img src="<%= gio_hang.AnhMinhHoa %>"></td>
+                                <td><%= gio_hang.sach_id %></td>
+                                <td><%= gio_hang.TenSach %></td>
+                                <td><%= gio_hang.Gia %>đ</td>
+                                <td><input type="number" id="quantity-<%= gio_hang.id %>" name="quantity" min="1" step="1" value="<%= gio_hang.soluong %>" inputmode="numeric" class="soluong"></td>
+                                <td><%= gio_hang.thanhtien %></td>
+                                <td>
+                                    <span class="luu-row" onclick="updateCartQuantity('<%= gio_hang.id %>', document.getElementById('quantity-<%= gio_hang.id %>').value)" title="Cập nhật giỏ hàng">Lưu</span>
+                                </td>
+                                <td><span class="delete-row" onclick="removeFromCart('<%= gio_hang.id %>')" title="Xóa sản phẩm khỏi giỏ hàng">X</span></td>
+                                </tr>
+                            <% end %>
+                        <% end %>
+                    </table>
+                </div>
+                <div class="cart-content-right">
+                    <table>
+                        <tr>
+                            <th colspan="2">TỔNG TIỀN GIỎ HÀNG</th>
+                        </tr>
+                        <tr>
+                            <td>TỔNG SẢN PHẨM</td>
+                            <td><p class="tongsp"><%= @gio_hangs.sum(&:soluong) %></p></td>
+                        </tr>
+                        <tr>
+                            <td>TỔNG TIỀN HÀNG</td>
+                            <td><p class="tongtien"><%= number_to_currency(@gio_hangs.sum { |dh| dh.Gia * dh.soluong }, unit: 'đ') %></p></td>
+                        </tr>
+                    </table>
+                    <div class="cart-content-right-button">
+                        <%= link_to dat_hang_index_path do %>
+                            <button>Đặt hàng ngay</button>
+                        <% end %>
+                        <%= link_to root_path do %>
+                            <button>Tiếp tục mua</button>
+                        <% end %>
+                    </div>
+                </div>
+
+            </div>
+        </div>   
+    </section>
+    <%= alert %>
+    <script src="JavaScript/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function updateCartQuantity(donHangId, newQuantity) {
+            $.ajax({
+                url: '/update_cart/' + donHangId,
+                type: 'POST',
+                data: { quantity: newQuantity },
+                success: function(response) {
+                    if (response.success) {
+                        alert(response.message);
+                        location.reload();
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function() {
+                    alert('Đã có lỗi xảy ra. Vui lòng thử lại.');
+                }
+            });
+        }
+
+
+        function updateCart(donHangId, newQuantity) {
+            $.ajax({
+                url: '/update_cart/' + donHangId,
+                type: 'POST',
+                data: { new_quantity: newQuantity },
+                success: function(response) {
+                    if (response.success) {
+                        alert(response.message);
+                        location.reload(); // Tải lại trang sau khi cập nhật thành công
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function() {
+                    alert('Đã có lỗi xảy ra. Vui lòng thử lại.');
+                }
+            });
+        }
+
+        function removeFromCart(donHangId) {
+            $.ajax({
+                url: '/remove_from_cart/' + donHangId,
+                type: 'DELETE',
+                success: function(response) {
+                    if (response.success) {
+                        alert(response.message);
+                        // Xóa hàng khỏi bảng
+                        $('tr[data-id="' + donHangId + '"]').remove();
+                        location.reload();
+                    } else {
+                        alert(response.message);
+
+                    }
+                },
+                error: function() {
+                    alert('Đã có lỗi xảy ra. Vui lòng thử lại.');
+                }
+            });
+        }
+
+        function performSearch() {
+            var searchValue = document.getElementById('searchInput').value;
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/?search=' + encodeURIComponent(searchValue), true);
+            xhr.onload = function() {
+                if (xhr.status >= 200 && xhr.status < 400) {
+                    document.querySelector('.cart-table-content').innerHTML = xhr.responseText;
+                }
+            };
+            xhr.onerror = function() {
+                // Xử lý lỗi mạng
+                console.error('Request failed');
+            };
+            xhr.send();
+        }
+      </script>
+</body>

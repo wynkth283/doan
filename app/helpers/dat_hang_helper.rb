@@ -1,0 +1,2 @@
+module DatHangHelper
+end

@@ -1,0 +1,141 @@
+<style>
+/* app/assets/stylesheets/admin/dashboard.css */
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+
+.dashboard {
+  margin: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.metric {
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  color: white;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.metric::before, .metric::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  background: rgba(255, 255, 255, 0.15);
+  pointer-events: none;
+  transition: transform 0.5s ease;
+}
+
+.metric::before {
+  width: 300px;
+  height: 300px;
+  top: -75px;
+  right: -75px;
+}
+
+.metric::after {
+  width: 200px;
+  height: 200px;
+  bottom: -50px;
+  left: -50px;
+}
+
+.metric:hover::before, .metric:hover::after {
+  transform: scale(1);
+}
+
+.metric h2 {
+  margin: 0 0 15px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+.metric p {
+  margin: 0;
+  font-size: 36px;
+  font-weight: bold;
+  color: #fff;
+  position: relative;
+  animation: count 1s ease-in-out;
+  transition: color 0.3s ease;
+}
+
+@keyframes count {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.metric:hover h2, .metric:hover p {
+  color: #ffeb3b;
+}
+
+.metric i {
+  font-size: 80px;
+  opacity: 0.5;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  transition: opacity 0.3s ease;
+}
+
+.metric:hover i {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+}
+
+</style>
+<!-- app/views/admin/dashboard.html.erb -->
+<div class="dashboard">
+  <div class="metric">
+    <i class="fa fa-book"></i>
+    <h2>Tổng số sách</h2>
+    <p><%= @total_books %></p>
+  </div>
+  <div class="metric">
+    <i class="fa fa-user"></i>
+    <h2>Tổng số khách hàng</h2>
+    <p><%= @total_customers %></p>
+  </div>
+  <div class="metric">
+    <i class="fa fa-shopping-cart"></i>
+    <h2>Đơn hàng đã đặt</h2>
+    <p><%= @total_orders %></p>
+  </div>
+  <div class="metric">
+    <i class="fa fa-dollar-sign"></i>
+    <h2>Tổng doanh thu</h2>
+    <p><%= number_to_currency(@total_revenue) %></p>
+  </div>
+</div>
+
+

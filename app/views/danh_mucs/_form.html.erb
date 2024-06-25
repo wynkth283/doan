@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cập nhật danh mục sách</title>
+    <style>
+        * {
+            outline: none;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .error-messages {
+            color: red;
+            background-color: #f9d6d5;
+            padding: 20px;
+            border: 1px solid #e1a1a1;
+            margin-bottom: 20px;
+        }
+
+        .Update {
+            border: 1px solid;
+            padding: 10px 20px;
+            margin: 20px 0 0 80%;
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            background: none;
+            display: inline-block;
+            background-color: green;
+
+        }
+
+        .Update:hover {
+            background-color: white;
+            color: black;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .table-dmsach {
+            padding: 15px;
+            width: 100%;
+            background-color: #fff;
+            border-collapse: collapse;
+            margin: 0 auto;
+            max-width: 600px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            
+        }
+
+        .table-dmsach tr th, .table-dmsach tr td {
+            border-bottom: 1px solid rgb(197, 197, 197);
+            text-align: left;
+            padding: 10px;
+        }
+
+        .table-dmsach tr th {
+            width: 200px;
+        }
+
+        .text_field_id, .text_field {
+            border: none;
+            padding: 5px;
+            width: calc(100% - 10px);
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+        }
+
+        .form-container {
+            padding: 20px;
+            background-color: #fff;
+            margin: 20px auto;
+            max-width: 650px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <%= form_with(model: danh_muc) do |form| %>
+            <% if danh_muc.errors.any? %>
+                <div class="error-messages">
+                    <h2><%= pluralize(danh_muc.errors.count, "error") %> prohibited this admin_danh_muc from being saved:</h2>
+                    <ul>
+                        <% danh_muc.errors.each do |error| %>
+                            <li><%= error.full_message %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            <% end %>
+
+            <table class="table-dmsach" cellspacing="0">
+                <tr>
+                    <th><%= form.label :id, 'Mã danh mục' %></th>
+                    <td><%= form.text_field :id, readonly: true, class: "text_field_id" %></td>
+                </tr>
+                <tr>
+                    <th><%= form.label :TenDM, 'Tên danh mục' %></th>
+                    <td><%= form.text_field :TenDM, class: "text_field" %></td>
+                </tr>
+            </table>
+            <%= form.submit 'Cập nhật', class: 'Update' %>
+        <% end %>
+    </div>
+
+</body>
+</html>

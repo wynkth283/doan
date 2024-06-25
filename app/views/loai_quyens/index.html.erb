@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Loai quyens</h1>
+
+<div id="loai_quyens">
+  <% @loai_quyens.each do |loai_quyen| %>
+    <%= render loai_quyen %>
+    <p>
+      <%= link_to "Show this loai quyen", loai_quyen %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New loai quyen", new_loai_quyen_path %>

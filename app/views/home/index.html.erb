@@ -1,0 +1,64 @@
+<!--views/home/index-->
+<body>
+<div style="display:none">
+<%= session[:nguoidung_id]%>
+</div>
+
+<section class="Cartegory">           
+    <div class="Cartegory-right-content">
+        <% if @saches.empty? %>
+            <div class="khongcosach">Không có sách trong hệ thống</div>
+        <% else %>
+            <% @saches.each do |sach| %>
+                <div class="khung">
+                    <div class="product-khunganh">
+                        <%= link_to chi_tiet_sach_index_path(id: sach.id) do %>
+                            <img class="khunganh" src="<%= sach.AnhMinhHoa %>" alt="" title="">
+                        <% end %>
+                    </div>
+                    <div class="tieude">
+                        <div class="tensach">
+                            <li class="khngtieude"><%= link_to sach.TenSach, chi_tiet_sach_index_path(id: sach.id), class: 'ten' %></li>
+                            <li><%= sach.Gia%>đ</li>
+                        </div>
+                        <div>
+                            <%= form_with(url: add_to_cart_path(sach), method: :post, local: true, class: "add-to-cart-form") do %>
+                            <div>
+                                <button type="submit" style="background: none; border: none; padding: 0;">
+                                <%= image_tag 'icon/add-to-cart.png', class: 'add-to-cart', title: 'Thêm vào giỏ hàng', style:"cursor: pointer;" %>
+                                </button>
+                            </div>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+        <% end %>
+    </div>
+</section>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll(".add-to-cart-form").forEach(function(form) {
+            form.addEventListener("submit", function(event) {
+                event.preventDefault();
+                
+                fetch(form.action, {
+                method: form.method,
+                body: new FormData(form),
+                headers: {
+                    "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content
+                }
+                }).then(function(response) {
+                if (response.ok) {
+                    alert("Sách đã được thêm vào giỏ hàng.");
+                } else {
+                    alert("Bạn chưa đăng nhập.");
+                }
+                }).catch(function(error) {
+                console.error('Error:', error);
+                });
+            });
+        });
+    });
+</script>
+</body>

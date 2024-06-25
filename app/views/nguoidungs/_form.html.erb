@@ -1,0 +1,51 @@
+<%= stylesheet_link_tag 'form_nguoidung' %>
+<%= form_with(model: nguoidung, class:"form_editt") do |form|%>
+  <% if nguoidung.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(nguoidung.errors.count, "error") %> prohibited this nguoidung from being saved:</h2>
+
+      <ul>
+        <% nguoidung.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<h1 style = "margin-top : 10px; text-align: center">Chỉnh sửa thông tin</h1>
+  <br>
+  <hr>
+  <table class="thongtin-editt">
+    <tr>
+      <th><%= form.label :TenND, 'Họ tên:', style: "display: block" %></th>
+      <td colspan="3"><%= form.text_field :TenND, required: true  %></td>
+    </tr>
+
+    <tr>
+      <th><%= form.label :AnhDaiDien, style: "display: block" %></th>
+      <td colspan="2"><%= form.file_field :AnhDaiDien %></td>
+    </tr>
+
+    <tr>
+      <th><%= form.label :Email, style: "display: block" %></th>
+      <td><%= form.text_field :Email, required: true  %></td>
+      <th><%= form.label :SDT, style: "display: block" %></th>
+      <td><%= form.number_field :SDT, required: true  %></td>
+    </tr>
+
+    <tr>
+      <th><%= form.label :MatKhau, style: "display: block" %></th>
+      <td><%= form.text_field :MatKhau, required: true  %></td>
+      <th><%= form.label :loai_quyen_id, style: "display: block" %></th>
+      <td><%= form.select :loai_quyen_id, options_for_select(@loai_quyens.map { |lq| [lq.TenQuyen, lq.id] }), {}, class: "custom-select" %></td>
+    </tr>
+
+    <tr>
+      <th><%= form.label :DiaChi, style: "display: block" %></th>
+      <td colspan="4"><%= form.text_field :DiaChi, required: true  %></td>
+    </tr>
+
+    <tr>
+      <td colspan="4"><%= form.submit 'Cập nhật',class:'Editt' %></td>
+    </tr>
+  </table>
+<% end %>

@@ -1,0 +1,148 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    box-sizing: border-box;
+}
+.edit_profile{
+    position: fixed;
+    width: 100%;
+    display: flex;
+}
+.content_edit_profile {
+    border: none;
+    padding-bottom: 10px;
+}
+.content_edit_profile::before {
+    position: fixed;
+    content: '';
+    background-color: #ddd;
+    background-image: url("icon/logoo1 (1).png");
+    background-repeat: no-repeat;
+    background-position: 260px;
+    background-size:600px 240px ;
+    width: 100%;
+    height: 200px;
+    box-shadow: 0 0 15px 0 rgba(0,0,0,0.8);
+}
+.admin-avtt {
+    margin-left: 80px;
+    position: relative;
+    
+}
+.admin-avtt img {
+    width: 135px;
+    position: fixed;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #7b7b7bdd;
+    background-color: white;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+    margin-top: 100px;
+}
+
+.khungupdate {
+    margin-top: 100px;
+    position: absolute;
+    
+}
+.capnhat p{
+    height: 20px;
+    width: 190px;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 155px 0 10px 40px;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    transition: all 0.5s ease-in-out;
+}
+.capnhat a {
+    text-decoration: none;
+}
+
+.capnhat p:hover{
+    height: 20px;
+    width: 190px;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 155px 0 20px 40px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    background-color: black;
+    transition: all 0.5s ease-in-out;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
+}
+
+.custom-file-input {
+    border: 1px solid #ccc;
+    width: 230px;
+    padding: 8px;
+    margin-left: 30px;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+}
+
+img#uploadedImage {
+    border: 3px outset;
+    padding: 2px;
+    margin: 10px 0 10px 70px;
+}
+
+.updatee {
+    background-color: 2d2c2c;
+    color: #dddd;
+    padding: 10px 80px;
+    margin: 10px 10px 0 35px;
+    border-radius: 15px;
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.updatee:hover {
+    background-color: #ddd;
+    color: #2d2c2c;
+}
+
+.content-profile {
+    position: absolute;
+    background-color: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 5px 10px rgba(0,0,0,1);
+    transform: translate(-50%,-50%);
+    top: 45%;
+    left: 57%;
+    padding: 10px 10px 30px 10px;
+}
+.content-profile td{
+    padding: 5px 20px;
+    text-align: right;
+}
+.content-profile th{
+    text-align: left;
+}
+
+
+.Edit_canhan {
+    border: 1px solid #c7c7c7dd;
+    border-radius: 10px;
+    width: 200px;
+    text-align: center;
+    padding: 5px;
+    margin: 15px auto 5px auto;
+    box-shadow: 0 0 3px 3px rgba(0.4,0,0,0.1);
+}
+.Edit_canhan a {
+    color: #2d2c2c;
+    text-decoration: none;  
+}
+.Edit_canhan:hover {
+    box-shadow: 0 0 5px 5px rgba(0.4,0,0,0.3);
+}
+
+

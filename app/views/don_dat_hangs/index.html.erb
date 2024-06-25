@@ -1,0 +1,126 @@
+<style>
+/* Reset some basic elements for consistency across browsers */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: #f0f2f5;
+  color: #333;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  max-height:690px;
+  overflow:auto
+}
+
+.notice {
+  color: #28a745;
+  background-color: #e9f7ef;
+  padding: 10px;
+  border: 1px solid #c3e6cb;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2.5em;
+  font-weight: 700;
+}
+
+#don_dat_hangs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.don_dat_hang {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 100%;
+  max-width: 350px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.don_dat_hang:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.don_dat_hang_info p {
+  margin-bottom: 10px;
+  font-size: 1.1em;
+}
+
+.don_dat_hang_info strong {
+  display: inline-block;
+  width: 100px;
+  color: #555;
+}
+
+.don_dat_hang_actions {
+  text-align: center;
+  margin-top: 20px;
+}
+
+button, .btn-danger {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #dc3545;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover, .btn-danger:hover {
+  background-color: #c82333;
+  transform: scale(1.05);
+}
+
+@media (min-width: 600px) {
+  .don_dat_hang {
+    flex: 1 1 calc(50% - 20px);
+  }
+}
+
+@media (min-width: 900px) {
+  .don_dat_hang {
+    flex: 1 1 calc(33.333% - 20px);
+  }
+}
+
+</style>
+<body>
+  <div class="container">
+    <p class="notice"><%= notice %></p>
+
+    <h1>Đơn đặt hàng</h1>
+
+    <div id="don_dat_hangs">
+      <% @don_dat_hangs.each do |don_dat_hang| %>
+        <%= render don_dat_hang %>
+      <% end %>
+    </div>
+  </div>
+</body>

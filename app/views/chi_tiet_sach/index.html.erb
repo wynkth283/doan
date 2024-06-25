@@ -1,0 +1,159 @@
+<style>
+
+ .flash {
+  padding: 10px;
+  
+}
+
+.flash .notice {
+  background-color: #e0ffe0;
+  border: 1px solid #00cc00;
+    padding: 10px;
+}
+
+.flash.alert {
+  background-color: #ffe0e0;
+  border: 1px solid #cc0000;
+}
+</style>
+<!------------------------------------Product-->
+<section class="product">
+    <div class="container">
+        <% if @sach %>
+            <div class="product-content">
+                <div class="product-content-left">
+                    <div class="product-content-left-big-img">
+                        <%= image_tag @sach.AnhMinhHoa.url %>
+                    </div>
+                </div>
+                
+                <div class="product-content-center">
+                    <div class="product-content-center-name">
+                        <h1><%= @sach.TenSach %></h1>
+                    </div>
+
+                    <table class="bangthongtin" cellspacing="0">
+                        <tr><th>Mã sản phẩm</th><td class="product-content-center-masp"><%= @sach.id %></td></tr>
+                        <tr><th>Giá</th><td class="product-content-center-price"><%= @sach.Gia %>đ</td></tr>
+                        <tr><th>Tác giả</th><td class="product-content-center-tacgia"><%= @sach.Tacgia %></td></tr>
+                        <tr><th>Danh mục</th><td class="product-content-center-theloai"><%= @sach.danh_muc.TenDM %></td></tr>
+                        <tr><th>Nhà xuất bản</th><td class="product-content-center-NXB"><%= @sach.NXB %></td></tr>
+                    </table>
+
+                    <%= form_with(url: CTS_them_sach_chi_tiet_sach_path(@sach), method: :post, local: true) do |form| %>
+                        <div class="product-content-center-soluong">
+                            <label for="soluong" style="font-weight: bold;">Số lượng</label>
+                            <div class="quantity-button">
+                                <span onclick="decrementValue()" class="tru">-</span>
+                                <%= form.number_field :soluong, min: 1, value: 1, step:"1", inputmode:"numeric", id:"quantity" %>
+                                <span onclick="incrementValue()" class="cong">+</span>
+                            </div>
+                        </div>
+                        
+                        <div class="product-content-center-button">
+                            <%= form.submit "Thêm vào giỏ hàng", class:"button" %>
+                        </div>
+                    <% end %>
+                    <div class="product-content-center-bottom">
+                        <div class="product-content-center-bottom-top">
+                        &#8744
+                        </div>
+
+                        <div class="product-content-center-bottom-content-big">
+                            <div class="product-content-center-bottom-content-title">
+                                <div class="product-content-center-bottom-content-title-item mota">
+                                <p>Mô tả</p>
+                                </div>
+                            </div>
+
+                            <div class="product-content-center-bottom-content">
+                                <div class="product-content-center-bottom-content-mota"><%= @sach.Mota %></div>
+                                <div class="flash ">
+                                    <div class="notice">
+                                        <%= notice %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-content-right">
+                    <div class="product-content-right-content-title">
+                        <div class="product-content-right-content-title-item danhgia">
+                            <p>Đánh giá</p>
+                        </div>
+                    </div>
+                    <div class="product-content-right-bottom-content">
+                        <div class="rating-container">
+                            <div class="stars">
+                                <span class="star" data-value="1">&#9733;</span>
+                                <span class="star" data-value="2">&#9733;</span>
+                                <span class="star" data-value="3">&#9733;</span>
+                                <span class="star" data-value="4">&#9733;</span>
+                                <span class="star" data-value="5">&#9733;</span>
+                            </div>
+                            <textarea id="comment" placeholder="Nhập bình luận đánh giá..."></textarea>
+                            <button id="submit-review">Gửi đánh giá</button>
+                            <div id="review-time" style="display: none;"></div>
+                            <div class="no-review">Chưa có đánh giá nào</div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        <% else %>
+            <p>Không tìm thấy sách.</p>
+        <% end %>
+        </div>
+</section>
+
+<script>
+    /*đánh giá sao*/
+    document.querySelectorAll('.star').forEach(star => {
+        star.addEventListener('click', function() {
+            const value = this.getAttribute('data-value');
+            document.querySelectorAll('.star').forEach(s => {
+                s.classList.remove('selected');
+                if (s.getAttribute('data-value') <= value) {
+                    s.classList.add('selected');
+                }
+            });
+        });
+    });
+
+    document.getElementById('submit-review').addEventListener('click', function() {
+        const selectedStars = document.querySelectorAll('.star.selected').length;
+        const comment = document.getElementById('comment').value;
+        if (selectedStars > 0 && comment.trim() !== '') {
+            const reviewTime = new Date().toLocaleString();
+            document.getElementById('review-time').innerText = `Đánh giá lúc: ${reviewTime}`;
+            document.getElementById('review-time').style.display = 'block';
+            document.querySelector('.no-review').style.display = 'none';
+        } else {
+            alert('Vui lòng nhập bình luận và chọn số sao đánh giá.');
+        }
+    });
+
+    // 
+    function incrementValue() {
+        var value = parseInt(document.getElementById('quantity').value, 10);
+        value = isNaN(value) ? 0 : value;
+        value++;
+        if (value > parseInt(document.getElementById('quantity').max)) {
+        value = parseInt(document.getElementById('quantity').max);
+        }
+        document.getElementById('quantity').value = value;
+    }
+
+    function decrementValue() {
+        var value = parseInt(document.getElementById('quantity').value, 10);
+        value = isNaN(value) ? 0 : value;
+        value--;
+        if (value < parseInt(document.getElementById('quantity').min)) {
+        value = parseInt(document.getElementById('quantity').min);
+        }
+        document.getElementById('quantity').value = value;
+    }
+</script>

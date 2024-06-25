@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @don_dat_hang %>
+
+<div>
+  <%= link_to "Edit this don dat hang", edit_don_dat_hang_path(@don_dat_hang) %> |
+  <%= link_to "Back to don dat hangs", don_dat_hangs_path %>
+
+  <%= button_to "Destroy this don dat hang", @don_dat_hang, method: :delete %>
+</div>

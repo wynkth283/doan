@@ -1,0 +1,388 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    box-sizing: border-box;
+    
+}
+
+.admin-content{
+    position: fixed;
+    width: 100%;
+    display: flex;
+}
+.admin-content-left{
+    width: 20%;
+    height: 900px;
+    flex: 1;
+    border-right: 1px solid #dddd;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+    background-color: #2d2c2c;
+}
+.admin-content-right{
+    width: 80%;
+    background-color: #ffff;
+}
+.admin-content-left-top {
+    border: none;
+    padding-bottom: 10px;
+}
+
+.admin-avt {
+    margin-left: 28%;
+    position: relative;
+    
+}
+.admin-avt img {
+    width: 135px;
+    height: 135px;
+    position: fixed;
+    object-fit: cover;
+    border-radius: 70px;
+    border: 3px solid #7b7b7bdd;
+    background-color: white;
+    box-shadow: 0 5px 10px rgba(84, 84, 84, 0.3);
+    margin-top: 30px;
+    transition: all 0.3s ease;
+}
+
+.admin-content-left .admin-content-left-top .admin-avt-img:hover {
+    transform: rotate(360deg);
+  }
+  
+.admin-content-left-bottom {
+    margin-top: 170px;
+}
+.admin-content-left-bottom span {
+    padding-left: 10px;
+}
+.admin-content-left-bottom a{
+    text-decoration: none;
+}
+
+.table_tr_tentk .tentk {
+    color: #dddd;
+    padding: 5px 20px;
+    margin: 0 50px 10px 50px;
+    border-radius: 10px;
+}
+.table_tentk .table_tr_tentk .tentk {
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 0 1px 5px 0px rgba(255, 255, 255, 0.3);
+}
+
+.chucnangphu_1 {
+    box-shadow: 0 1px 5px 0px rgba(255, 255, 255, 0.3);
+    padding: 10px 20px 10px 50px;
+    color: #dddd;
+    margin: 0 10px 0 10px;
+    border-radius: 10px;
+}
+
+.chucnangphu_2 {
+    box-shadow: 0 1px 5px 0px rgba(255, 255, 255, 0.3);
+    padding: 10px 20px 10px 35px;
+    color: #dddd;
+    margin: 15px 10px 0 10px;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.chucnangphu_1 .chucnangphu_trangchu {
+    color: #ddd;
+    margin: 0 50px 10px 10px;
+    
+}
+.chucnangphu .chucnangphu_1 .chucnangphu_trangchu {
+    text-align: center;
+    font-weight: bold;
+}
+
+.chucnangphu_1 .chucnangphu_dangxuat {
+    color: #dddd;
+    margin: 0 50px 10px 10px;
+}
+.chucnangphu .chucnangphu_1 .chucnangphu_dangxuat {
+    text-align: center;
+    font-weight: bold;
+}
+.quanli a {
+    text-decoration: none;
+    color: #000;
+}
+
+.chucnang {
+    background-color: #2d2c2c;
+    max-height: 230px;
+    box-shadow: 0 1px 5px 0px rgba(255, 255, 255, 0.3);
+    margin: 0 10px 0 10px;
+    overflow-y: auto;
+}
+
+.chucnang::-webkit-scrollbar {
+    width: 5px; /* Rộng của thanh cuộn */
+}
+
+.chucnang::-webkit-scrollbar-track {
+    background-color: #888;
+}
+
+.chucnang::-webkit-scrollbar-thumb {
+    background-color: #fff;
+    border-radius: 5px; 
+}
+
+.chucnang::-webkit-scrollbar-thumb:hover {
+    background-color: #fff;
+}
+
+span {
+    color: #dddd;
+}
+
+span i {
+    padding-left: 10px;
+}
+
+span .trangchu, 
+span .dangxuat {
+    color: #dddd;
+    padding-left: 10px;
+}
+
+.quanli span {
+    font-weight: bold;
+}
+
+span p {
+    margin: 15px 0 2px 30px;
+}
+
+hr{
+    box-shadow: 0 1px 5px 0px rgba(0,0,0,0.3);
+    margin: 0 10px 0 10px;
+}
+
+.tenchucnang {
+    padding: 10px 0 10px 45px;
+    color: #dddd;
+}
+.last {
+    border-radius: 0 0 10px 10px;
+}
+
+.right {
+    padding-right: 10px;
+}
+
+.right-1 {
+    padding-right: 3px;
+}
+.tenchucnang:hover {
+    background-color: #4d4d4d;
+    transition: all 0.4s ease;
+}
+/* Quan ly sach */
+
+.qlsach-content-left tr td{
+    padding: 5px;
+    width: 220px;
+}
+
+.qlsach-content {
+    display: flex;
+    width: 100%;
+}
+
+.qlsach-content-left {
+    flex: 5;
+    padding: 15px;
+    width: 80%;
+}
+
+
+.qlsach-content-left table{
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.qlsach-content-left th {
+    padding-bottom: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    color: #333;
+    text-transform: uppercase;
+    border-collapse: collapse;
+    border-bottom: 2px solid #dddd;
+
+}
+
+.qlsach-content-left table p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #333;
+}
+
+.qlsach-table-content span {
+    text-align: center;
+} 
+.qlsach-content-left table span {
+    display: inline-block;
+    padding-top: 3px;
+    width: 50px;
+    height: 30px;
+    border: 2px solid #dddd;
+    cursor: pointer;
+    background-color:rgba(2, 206, 206, 0.71);
+    color: #ffff;
+}
+.qlsach-content-left table span:hover {
+    box-shadow: 0px 0px 2px 2px rgba(0.2, 0.2, 0.2, 0.2);
+}
+.qlsach-content-left table td {
+    padding: 20px 0;
+    border-bottom: 2px solid #dddd;
+}
+
+.qlsach-content-left td:first-child img {
+    width: 130px;
+}
+
+.qlsach-content-left td:nth-child(2) {
+    max-width: 130px;
+}
+
+.qlsach-content-right {
+    flex: 1;
+    padding: 0 20px;
+    border-left: 2px solid #dddd;
+    width: 20%;
+}
+
+.qlsach-content-right table {
+    width: 100%;
+    border-bottom: 2px solid #dddd;
+}
+
+.qlsach-content-right table th {
+    padding-bottom: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333;
+    font-size: 12px;
+    border-collapse: collapse;
+    border-bottom: 2px solid #dddd;
+}
+
+.qlsach-content-right table td {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333;
+    font-size: 12px;
+    padding: 6px 0;
+
+}
+.qlsach-content-right table tr:nth-child(4) td {
+    border-bottom: 2px solid #dddd;
+
+}
+
+.qlsach-content-right table tr td:last-child {
+    text-align: right;
+}
+
+.qlsach-table-content tr td input {
+    margin: 10px;
+}
+
+.qlsach-table-content tr td img {
+    width: 120px;
+    height: 200px;
+}
+.maSach input{
+    width: 100px;
+}
+.tenSach input {
+    width: 100px;
+    margin-left: 20px;
+}
+.MaDM input {
+    width: 30px;
+}
+.Gia input {
+    width: 100px;
+}
+.MaNXB input {
+    width: 30px;
+}
+.motasach {
+    font-size: 13px;
+    width: 400px;
+}
+.xoa {
+    padding-left: 10px;
+}
+
+.Edit {
+    border: 1px solid;
+    padding: 5px;
+    margin-left: 30px;
+    color: black;
+    text-decoration: none;
+    place-self: start;
+}
+.Edit:hover {
+    background-color: black;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.Back {
+    border: 1px solid;
+    padding: 5px;
+    margin-left: 15px;
+    color: black;
+    text-decoration: none;
+    place-self: start;
+}
+.Back:hover {
+    background-color: black;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.Destroy {
+    border: 1px solid;
+    padding: 5.5px;
+    margin-left: 15px ;
+    color: black;
+    text-decoration: none;
+    font-size: 15px;
+
+}
+.Destroy:hover {
+    background-color: red;
+    color: white;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.Update {
+    border: 1px solid;
+    padding: 5px;
+    margin-left: 30px;
+    margin-top: 15px;
+    color: black;
+    text-decoration: none;
+    font-size: 15px;
+    background: none;
+}
+.Update:hover {
+    background-color: green;
+    color: white;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    
+}
+

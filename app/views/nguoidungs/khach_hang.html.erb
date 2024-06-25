@@ -1,0 +1,43 @@
+<!-- app/views/nguoidungs/khach_hang.html.erb -->
+<%= stylesheet_link_tag 'nguoidungs', media: 'all', 'data-turbolinks-track': 'reload' %>
+<div class="QLnd">
+    <div style="display: flex">
+    <%= link_to nguoidungs_path, style:"color: black" do %>
+        <p>Quản lý người dùng</p>
+    <% end%>
+    <%= image_tag 'right-arrow', style:"width: 20px; height:20px; margin: 2px 10px 0 10px" %>
+    <%= link_to khach_hang_nguoidungs_path, style:"color: black" do %>
+        <p> Quản lý khách hàng</p>
+    <% end%>
+    </div>
+    <div class="search-bar">
+        <%= form_with(url: khach_hang_nguoidungs_path, method: :get, local: true, class: "search-form") do %>
+            <%= text_field_tag :search, params[:search], placeholder: "Tìm kiếm...", class: "search-input" %>
+            <button type="submit" class="search-button">
+                <i class="fas fa-search search-icon"></i>
+            </button>
+        <% end %>
+    </div>
+</div>
+
+<div class="container">
+    <div class="user-card">
+      <% if @khach_hang.any? %>
+        <% @khach_hang.each do |nguoidung| %>
+            <div class="user">
+                <div class="avatar">
+                    <img src="<%= nguoidung.AnhDaiDien.url %>" alt="Ảnh Đại Diện">
+                </div>
+                <div class="user-info">
+                    <h4><%= nguoidung.TenND %></h4>
+                    <p>Email: <%= nguoidung.Email %></p>
+                    <p>Địa chỉ: <%= nguoidung.DiaChi %></p>
+                    <p>SĐT: 0<%= nguoidung.SDT %></p>
+                    <p><%= link_to "Chỉnh sửa", edit_nguoidung_path(nguoidung), class: "btn btn-primary hover-effect" %></p>
+                </div>
+            </div>
+        <% end %>
+      <% else %>
+    <p class="khongcond">Không tìm thấy thông tin khách hàng.</p>
+  <% end %>
+</div>

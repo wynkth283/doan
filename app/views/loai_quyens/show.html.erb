@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @loai_quyen %>
+
+<div>
+  <%= link_to "Edit this loai quyen", edit_loai_quyen_path(@loai_quyen) %> |
+  <%= link_to "Back to loai quyens", loai_quyens_path %>
+
+  <%= button_to "Destroy this loai quyen", @loai_quyen, method: :delete %>
+</div>

@@ -1,0 +1,35 @@
+<%= stylesheet_link_tag 'admin-login', media: 'all' %>
+
+<body id="loginForm">
+  <%= form_with(url: login_path, local: true, html: { class: "form_dangnhap" }) do |f| %>
+    <p class="header">ĐĂNG NHẬP</p>
+    <table class="thongtin-dangnhap">
+      <tr>
+        <th>Tên tài khoản<span style="color: red;">*</span></th>
+        <td><%= f.email_field :email, required: true, placeholder:"Tên tài khoản hoặc Email", class:"input" %></td>
+      </tr>
+      <tr>
+        <th>Mật khẩu<span style="color: red;">*</span></th>
+        <td><%= f.password_field :MatKhau, required: true, placeholder:"Nhập mật khẩu",  class:"input" %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= f.submit "Đăng nhập", class:"button-login" %></td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <p style="margin-top: 5px; text-align: center;font-size: 13px">Quên mật khẩu? <a href="quenmatkhau.php">Lấy lại mật khẩu</a></p>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" class="ưdQ"><p style="text-align: center; font-size: 13px">Chưa có tài khoản? <a href="#"><%= link_to 'Đăng ký ngay', dang_ky_index_path, style:"color:red" %></a></p></td>
+      </tr>
+      <tr>
+          <td colspan="2" style="display:flex; width:160px; margin-top:12%">
+              <%= image_tag 'icon/arrow-left.png', width:"15px", height:"15px" %>
+              <p style=" padding-left: 5px;"><a style=" text-decoration: none; color: black;"><%= link_to 'Về trang chủ', home_index_path %></a></p>
+          </td>
+      </tr>
+    </table>
+  <% end %>
+</body>

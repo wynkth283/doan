@@ -1,0 +1,30 @@
+<%= stylesheet_link_tag 'profile', media: 'all' %>
+<!-- ---------------------------bODY------------------------ -->
+<body>
+    <div class="edit_profile">
+        <div class="content_edit_profile">
+            <!--Chỉ hiển thị background-->
+        </div>
+    </div>
+
+    <div class="content-profile">
+        <% if session[:nguoidung_id] %>
+            <h2 style = " margin: 10px 0 0 20px; text-align: center">Thông tin cá nhân</h2>
+            <br><hr>
+            <table style="padding-left: 30px;padding-top: 20px;">
+                <% nguoidung = Nguoidung.find(session[:nguoidung_id]) %>
+                <tr><th>Tên người dùng</th><td class="TenND"><%= nguoidung.TenND %></td></tr>
+                <tr><th>Email</th><td class="Email"><%= nguoidung.Email %></td></tr>
+                <tr><th>Số điện thoại</th><td class="SoDienThoai"><%= nguoidung.SDT %></td></tr>
+                <tr><th>Địa chỉ</th><td class="DiaChi"><%= nguoidung.DiaChi %></td></tr>
+            </table>
+            <div>
+                <div class="Edit_canhan">
+                    <%= link_to profile_edit_path(session[:nguoidung_id]) do%>
+                        <p>Sửa thông tin</p>
+                    <% end %>
+                </div>
+            </div>
+        <% end %> 
+    </div>
+</body>

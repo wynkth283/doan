@@ -1,0 +1,71 @@
+<style>
+    .category {
+        padding: 10px 0;
+        display: content;
+    }
+    .category-content {
+        display: flex;  
+    }
+    .category-content-left {
+        width: 25%;
+        display: flex;
+    }
+
+    .category-content-left-big-img {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .category-content-left-big-img img {
+        width:100%;
+    }
+
+
+    .category-content-right {
+        padding-top: 20px;
+        width: 75%;
+    }
+    .bangthongtin th{
+        text-align: left;
+    }
+
+    .bangthongtin {
+        margin: 15px 0;
+    }
+    .bangthongtin tr td {
+        padding: 10px 20px;
+    }
+
+    
+</style>
+
+<body>
+<div id="<%= dom_id sach %>">
+    <section class="category">
+        <div class="container">
+            <div class="category-content">
+                <div class="category-content-left">
+                    <div class="category-content-left-big-img">
+                        <img src="<%= sach.AnhMinhHoa %>" alt="">
+                    </div>
+                </div>
+                <div class="category-content-right">
+                    <div class="category-content-right-name">
+                        <h1><%= sach.TenSach %></h1>
+                    </div>
+                    <table class="bangthongtin" cellspacing="0">
+                        <tr><th>Mã sản phẩm</th><td><%= sach.id %></td></tr>
+                        <tr><th>Loại sản phẩm</th><td><%= sach.danh_muc.TenDM %></td></tr>
+                        <tr><th>Giá</th><td><%= sach.Gia %><sup>đ</sup></td></tr>
+                        <th>Tác giả</th><td><%= sach.Tacgia %></td>
+                    </table>
+                    <table>
+                      <tr><th style="text-align: left; padding-bottom: 10px">Mô tả</th></tr>
+                      <tr><td style="width:800px"><%= sach.Mota %></td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</body>

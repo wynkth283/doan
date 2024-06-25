@@ -1,0 +1,49 @@
+<!-- app/views/nguoidungs/index.html.erb -->
+<%= stylesheet_link_tag 'nguoidung_index', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+<p class="notice"><%= notice %></p>
+<div class="QLnd">
+    <div style="display: flex">
+      <%= link_to nguoidungs_path, style:"color: black" do %>
+          <p>Quản lý người dùng</p>
+      <% end%>
+    </div>
+    <div class="search-bar">
+        <%= form_with(url: nguoidungs_path, method: :get, local: true, class: "search-form") do %>
+            <%= text_field_tag :search, params[:search], placeholder: "Tìm kiếm...", class: "search-input" %>
+            <button type="submit" class="search-button">
+                <i class="fas fa-search search-icon"></i>
+            </button>
+        <% end %>
+    </div>
+</div>
+<div class="function-links">
+  <%= link_to khach_hang_nguoidungs_path do %>
+    <p class="tenchucnangnd"><i class="fas fa-user right"></i>Tài khoản Khách hàng (<%= @total_customers %>)</p>
+  <% end %>
+
+  <%= link_to nhan_vien_nguoidungs_path do %>
+    <p class="tenchucnangnd"><i class="fas fa-users right-1"></i>Tài khoản Nhân viên (<%= @total_employees %>)</p>
+  <% end %>
+</div>
+
+<div id="nguoidungs" class="user-list">
+  <% if @nguoidungs.any? %>
+    <% @nguoidungs.each do |nguoidung| %>
+      <div class="user-card">
+        <div class="avatar">
+          <img src="<%= nguoidung.AnhDaiDien.url %>" alt="Ảnh Đại Diện">
+        </div>
+        <div class="user-info">
+          <p><strong>Tên:</strong> <%= nguoidung.TenND %></p>
+          <p><strong>Email:</strong> <%= nguoidung.Email %></p>
+          <p><strong>Địa chỉ:</strong> <%= nguoidung.DiaChi %></p>
+          <p><strong>SĐT:</strong> 0<%= nguoidung.SDT %></p>
+          <p><%= link_to "Chi tiết", nguoidung, class: "btn btn-primary hover-effect" %></p>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p class="khongcond">Không tìm thấy thông tin người dùng.</p>
+  <% end %>
+</div>

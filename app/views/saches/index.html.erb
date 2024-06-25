@@ -1,0 +1,163 @@
+<style>
+    .category {
+        padding: 10px 0;
+        display: content;
+    }
+    .category-content {
+        display: flex;  
+    }
+    .category-content-left {
+        width: 25%;
+        display: flex;
+    }
+
+    .category-content-left-big-img {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .category-content-left-big-img img {
+        width:100%;
+    }
+
+
+    .category-content-right {
+        padding-top: 20px;
+        width: 75%;
+    }
+    .bangthongtin th{
+        text-align: left;
+    }
+
+    .bangthongtin {
+        margin: 15px 0;
+    }
+    .bangthongtin tr td {
+        padding: 10px 20px;
+    }
+
+    .QLsach {
+        padding: 30px 30px 30px 30px; 
+        font-weight: bold; 
+        font-size: 20px; 
+        border-bottom: 1px solid #dddd;
+        display: flex;
+    }
+
+.search-bar {
+    position: relative;
+    width: 300px;
+    margin: 0 auto;
+    margin-right: 50px;
+  }
+  
+  .search-form {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 20px 0 0 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: border 0.3s ease;
+  }
+  
+  .search-input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  .search-button {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-left: none;
+    padding: 10px 15px;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  .search-button:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .search-icon {
+    color: #aaa;
+    font-size: 16px;
+  }
+    .khongcosach {
+        position: absolute;
+        transform: translate(-50%,-50%);
+        top: 40%;
+        left: 60%;
+    }
+</style>
+
+<p style="color: green"><%= notice %></p>
+<div class="QLsach">
+    <%= link_to saches_path, style:"flex: 2; color: black" do %>
+        <p>Quản lý sách</p>
+    <% end%>
+
+    <div class="search-bar">
+        <%= form_with(url: saches_path, method: :get, local: true, class: "search-form") do %>
+            <%= text_field_tag :search, params[:search], placeholder: "Tìm kiếm...", class: "search-input" %>
+            <button type="submit" class="search-button">
+            <i class="fas fa-search search-icon"></i>
+            </button>
+        <% end %>
+    </div>
+
+    <div style="flex:1;">
+        <%= link_to new_sach_path, class: "btn btn-primary", style:"color: black" do %>
+            <i class="fas fa-book"></i> Thêm sách
+        <% end %>
+    </div>
+</div>
+
+
+<div id="admin_categories" style="overflow-y: auto; max-height: 640px;">
+<% if @saches.empty? %>
+    <div class="khongcosach">Không có sách trong hệ thống</div>
+<% else %>
+    <% @saches.each do |sach| %>
+      <section class="category">
+          <div class="container">
+              <div class="category-content">
+                  <div class="category-content-left">
+                      <div class="category-content-left-big-img">
+                          <img src="<%= sach.AnhMinhHoa %>" alt="">
+                      </div>
+                  </div>
+                  <div class="category-content-right">
+                      <div class="category-content-right-name">
+                          <h1><%= sach.TenSach %></h1>
+                        </div>
+                        <table class="bangthongtin" cellspacing="0">
+                            <tr><th>Mã sản phẩm</th><td><%= sach.id %></td></tr>
+                            <tr><th>Loại sản phẩm</th><td><%= sach.danh_muc.TenDM %></td></tr>
+                            <tr><th>Giá</th><td><%= sach.Gia %><sup>đ</sup></td></tr>
+                            <th>Tác giả</th><td><%= sach.Tacgia %></td>
+                            <tr><th>Nhà xuất bản</th><td><%= sach.NXB %></td>
+                        </table>
+                        <table>
+                            <tr><th style="text-align: left; padding-bottom: 10px">Mô tả</th></tr>
+                            <tr><td style="width:800px"><%= sach.Mota %></td></tr>
+                        </table>
+                  </div>
+              </div>
+          </div>
+      </section>
+      <div style= "padding-left: 45%" ><%= link_to 'Chỉnh Sửa', edit_sach_path(sach), class: "Edit" %></div>
+      <br><br><br>
+      <hr>
+    <% end %>
+  <% end %>
+</div>

@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  TenSach: MyString
+  AnhMinhHoa: MyString
+  Tacgia: MyString
+  danh_muc: one
+  Mota: MyString
+  NXB: MyString
+  Gia: 1
+
+two:
+  TenSach: MyString
+  AnhMinhHoa: MyString
+  Tacgia: MyString
+  danh_muc: two
+  Mota: MyString
+  NXB: MyString
+  Gia: 1

@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @gio_hang %>
+
+<div>
+  <%= link_to "Edit this gio hang", edit_gio_hang_path(@gio_hang) %> |
+  <%= link_to "Back to gio hangs", gio_hangs_path %>
+
+  <%= button_to "Destroy this gio hang", @gio_hang, method: :delete %>
+</div>

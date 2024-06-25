@@ -1,0 +1,129 @@
+*,
+*:before,
+*:after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.form_dangnhap{
+    height: 330px;
+    width: 500px;
+    background-color: rgba(255,255,255,0.13);
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 15px rgba(0,0,0,0.6);
+    padding: 30px 35px;
+}
+.form_dangnhap *{
+    font-family: 'Poppins',sans-serif;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+
+.thongtin-dangnhap tr th {
+    text-align: left;
+    padding: 10px 10px;
+    font-weight: lighter;
+
+}
+
+.thongtin-dangnhap tr td {
+    padding: 5px 10px;
+}
+.header {
+    border-bottom: 2px solid #dddd;
+    padding-bottom: 10px;
+}
+.input {
+    border-bottom: 2px solid #dddd;
+    width: 100%;
+
+}
+.thongtin-dangnhap td .button-login {
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #fff;
+    border: 2px solid black;
+    cursor: pointer;
+    border: 2px solid #dddd;
+    border-radius: 10px;
+    width: 135px;   
+    height: 30px;
+    margin-left: 100px;
+}
+.thongtin-dangnhap td .button-login:hover {
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
+    background-color: #000000;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.thongtin-dangnhap .button-login td button:focus {
+    background-color: grey;
+    color: #000000;
+    
+}   
+
+.thongtin-dangnhap .admin-login-button td button{
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #fff;
+    border: 2px solid black;
+    cursor: pointer;
+    border: 2px solid #dddd;
+    border-radius: 10px;
+    width: 250px;   
+    height: 30px;
+    margin: 20px 80px;
+}
+.thongtin-dangnhap .admin-login-button td button a{
+    text-decoration: none;
+    color: #000000;
+}
+.thongtin-dangnhap .admin-login-button td button:hover {
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
+    background-color: red;
+    transition: all 0.5s ease;
+}
+.thongtin-dangky .admin-login-button td button a:hover{
+    color: #fff;
+}
+
+/* CSS cho message box */
+.message-box {
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5); /* Bắt đầu với kích thước nhỏ */
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease; /* Thêm transition */
+}
+.message-box-content img {
+    width: 50px;
+    height: 50px;
+}
+.message-box-content {
+    display: flex;
+}
+.message-box button {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ffff;
+    border: none;
+    margin-left: 150px;
+    font-size: 15px;
+    cursor: pointer;
+}
+.message-box p {
+    margin-top: 15px;
+}

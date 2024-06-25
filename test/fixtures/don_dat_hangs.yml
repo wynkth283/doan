@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nguoidung: one
+  TenND: MyString
+  Email: MyString
+  SDT: MyString
+  DiaChi: MyString
+  ChiTiet: MyString
+  TongTien: 1
+  NgayDat: 2024-06-06
+
+two:
+  nguoidung: two
+  TenND: MyString
+  Email: MyString
+  SDT: MyString
+  DiaChi: MyString
+  ChiTiet: MyString
+  TongTien: 1
+  NgayDat: 2024-06-06

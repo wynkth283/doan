@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cửa hàng sách - Hưng Thịnh</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
+
+        <%= stylesheet_link_tag 'style_home', media: 'all' %>
+        <%= javascript_importmap_tags %>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    </head>
+
+    <body>
+    <header>
+        <div class="logo">
+            <a href="#">
+                <%= link_to home_index_path do %>
+                    <%= image_tag 'icon/logoo1 (1).png' %>
+                <% end %>
+            </a>
+        </div>
+
+        <div class="menu">
+            <li><a href="index.php"><%= link_to 'TRANG CHỦ', home_index_path %></a></li>
+            <li><a href="#"><%= link_to 'LIÊN HỆ', lien_he_index_path %></a></li>
+        </div>
+        
+        <div class="search-bar">
+            <%= form_with(url: root_path, method: :get, local: true, class: "search-form") do %>
+                <%= text_field_tag :search, params[:search], placeholder: "Tìm kiếm...", class: "search-input" %>
+                <button type="submit" class="search-button">
+                    <i class="fas fa-search search-icon"></i>
+                </button>
+            <% end %>
+        </div>
+
+        <div class="search">
+            <p style="padding-left: 10px;"></p>
+            <li>
+                <% if session[:nguoidung_id] %>
+                    <% nguoidung = Nguoidung.find(session[:nguoidung_id]) %>
+                        <div class="vien">
+                            <%= link_to appropriate_path_for_user(nguoidung) do %>
+                                <% if nguoidung.AnhDaiDien.present? %>
+                                    <%= image_tag nguoidung.AnhDaiDien.url, class: "anhdaidien" %>
+                                <% else %>
+                                    <%= image_tag 'icon/user.png', class: "anhdaidien" %>
+                                <% end %>
+                            <% end %>
+                        </div>
+                        <ul class="sub-user">
+                            <li>
+                                <%= link_to appropriate_path_for_user(nguoidung) do %>
+                                    <%= nguoidung.TenND %>
+                                <% end %>
+                            </li>
+                            <li><%= link_to 'Đăng xuất', logout_path, method: :delete, data: { confirm: "Bạn có chắc muốn đăng xuất?" } %></li>
+                        </ul>
+                <% else %>
+                    <a href="#"><%= image_tag 'icon/user.png', class: "anhdaidien" %></a>
+                    <ul class="sub-user">
+                        <li><%= link_to 'Đăng nhập', dang_nhap_index_path %></li>
+                        <li><%= link_to 'Đăng ký', dang_ky_index_path %></li>
+                    </ul>
+                <% end %>
+            </li>
+            <li>
+                <a href="#" title="Giỏ hàng">
+                    <%= link_to carts_index_path do %>
+                        <%= image_tag 'icon/shopping-cart.png', class: "giohang" %>
+                    <% end %>
+                </a>
+            </li>
+        </div>
+    </header>
+    <%= yield %>
+
+        <% flash.each do |key, message| %>
+            <div class="flash <%= key %>">
+                <%= message %>
+            </div>
+        <% end %>
+  </body>
+</html>

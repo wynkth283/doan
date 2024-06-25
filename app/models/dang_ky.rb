@@ -1,0 +1,2 @@
+class DangKy < ApplicationRecord
+end

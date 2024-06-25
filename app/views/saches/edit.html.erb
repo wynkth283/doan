@@ -1,0 +1,40 @@
+
+<style>
+  .thanh-cuon{
+    overflow-y: auto;
+    max-height: 600px;
+    padding-top: 100px
+  }
+  .QLsach {
+        padding: 30px 30px 30px 30px; 
+        font-weight: bold; 
+        font-size: 20px; 
+        border-bottom: 1px solid #dddd;
+        display: flex;
+        color: black;
+        position: fixed;
+        width:100%;
+        background-color: white;
+    }
+</style>
+
+
+  
+<div class="QLsach">
+    <%= link_to saches_path, style:"color: black; margin-right: 5px" do %>
+        <p>Quản lý sách </p>
+    <% end%>
+    <p> > Chỉnh sửa thông tin sách</p>
+</div>
+<div class="thanh-cuon">
+  <%= render "form", sach: @sach %>
+
+  <br>
+
+  <div>
+    <%= link_to "Xem trước", @sach, class:"Edit" %>
+    <%= link_to "Về Quản lý sách", saches_path, class:"Back" %>
+  </div>
+  <br>
+  <br>
+  </div>

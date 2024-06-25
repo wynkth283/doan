@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DoAn1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "admin", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+<section class="admin-content">
+    <div class="admin-content-left">
+        <div class="admin-content-left-top">
+            <div class="admin-avt">
+                <% if session[:nguoidung_id] %>
+                    <% nguoidung = Nguoidung.find(session[:nguoidung_id]) %>
+                        <% if nguoidung.AnhDaiDien.present? %>
+                            <a href="#"><%= image_tag nguoidung.AnhDaiDien.url, class: "admin-avt-img" %></a>
+                        <% else %>
+                            <a href="#"><%= image_tag 'icon/admin-panel', class: "admin-avt-img" %></a>
+                        <% end %>
+                <% end %>
+            </div>
+        </div>
+
+        <div class="admin-content-left-bottom">
+            <% if session[:nguoidung_id] %>
+                <div class="table_tentk">
+                    <div class="table_tr_tentk">
+                        <p class="tentk"><%= Nguoidung.find(session[:nguoidung_id]).TenND%></p>
+                    </div>
+                </div>
+            <% else %>
+                <div class="table_tentk">
+                    <div class="table_tr_tentk">
+                        <p class="tentk">Người Dùng</p>
+                    </div>
+                </div>
+            <% end %> 
+            <br>
+            <div class="chucnangphu">
+                <div class="chucnangphu_1">
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <%= link_to 'Trang chủ', home_index_path, class:"chucnangphu_trangchu" %>
+                </div>
+            </div>
+            <br>
+            <div class="chucnangphu">
+                <div class="chucnangphu_1">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <%= link_to 'Thống kê', khach_hang_index_path, class:"chucnangphu_trangchu" %>
+                </div>
+            </div>
+            <br>
+            <div class="chucnangphu">
+                <div class="chucnangphu_1">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    <%= link_to 'Đăng xuất', logout_path, method: :delete, data: { confirm: "Bạn có chắc muốn đăng xuất?" }, class:"chucnangphu_dangxuat" %>
+                </div>
+            </div> 
+        </div>
+
+        <div class="quanli">
+            <span>
+                <p class="chucnangphu_2"><i class="fas fa-cogs right"></i> Chức năng</p>
+            </span>
+            <hr>
+            <div class="chucnang last">
+                <%= link_to profile_index_path do%>
+                    <p class="tenchucnang"><i class="fas fa-user-tie right"></i> Tài khoản cá nhân</p>
+                <% end %>
+                <!-- Đơn hàng -->
+                <%= link_to don_dat_hangs_path do%>
+                    <p class="tenchucnang last" ><i class="fas fa-shopping-cart right-1"></i> Đơn đặt hàng</p>
+                <% end %>
+            </div>
+        </div>
+    </div>
+    <div class="admin-content-right">
+        <%= yield %>
+    </div>
+</section>
+</body>
+</html>

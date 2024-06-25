@@ -1,0 +1,57 @@
+<%= form_with(model: gio_hang) do |form| %>
+  <% if gio_hang.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(gio_hang.errors.count, "error") %> prohibited this gio_hang from being saved:</h2>
+
+      <ul>
+        <% gio_hang.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :nguoidung_id, style: "display: block" %>
+    <%= form.text_field :nguoidung_id %>
+  </div>
+
+  <div>
+    <%= form.label :sach_id, style: "display: block" %>
+    <%= form.text_field :sach_id %>
+  </div>
+
+  <div>
+    <%= form.label :AnhMinhHoa, style: "display: block" %>
+    <%= form.text_field :AnhMinhHoa %>
+  </div>
+
+  <div>
+    <%= form.label :TenSach, style: "display: block" %>
+    <%= form.text_field :TenSach %>
+  </div>
+
+  <div>
+    <%= form.label :Gia, style: "display: block" %>
+    <%= form.number_field :Gia %>
+  </div>
+
+  <div>
+    <%= form.label :danh_muc_id, style: "display: block" %>
+    <%= form.text_field :danh_muc_id %>
+  </div>
+
+  <div>
+    <%= form.label :soluong, style: "display: block" %>
+    <%= form.number_field :soluong %>
+  </div>
+
+  <div>
+    <%= form.label :thanhtien, style: "display: block" %>
+    <%= form.number_field :thanhtien %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

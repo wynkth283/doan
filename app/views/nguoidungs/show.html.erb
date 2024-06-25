@@ -1,0 +1,18 @@
+<p style="color: green"><%= notice %></p>
+<div class="user-list" style="margin-top:50px">
+ <div class="user-card">
+    <div class="user">
+      <%= render @nguoidung %>
+      <div style="display:flex; margin: 0 0 0 40px">
+      <%= link_to "Chỉnh sửa", edit_nguoidung_path(@nguoidung), class: "btn btn-primary hover-effect", style:"margin-right:20px"  %>
+      <%= link_to "Trở về", nguoidungs_path , class: "btn btn-primary hover-effect"  %>
+      </div>
+      <div>
+        <%= button_to "Xóa tài khoản", @nguoidung, method: :delete, class: "btn btn-primary hover-effect", style:"background-color:red; margin-top:20px" %>
+      </div>
+      </div>
+      </div>
+      </div>
+    </div>
+</div>  
+

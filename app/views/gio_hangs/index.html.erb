@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Gio hangs</h1>
+
+<div id="gio_hangs">
+  <% @gio_hangs.each do |gio_hang| %>
+    <%= render gio_hang %>
+    <p>
+      <%= link_to "Show this gio hang", gio_hang %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New gio hang", new_gio_hang_path %>

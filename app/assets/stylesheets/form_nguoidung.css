@@ -1,0 +1,96 @@
+
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    box-sizing: border-box;
+}
+
+.form_editt {
+    height: 380px;
+    width: 750px;
+    position: absolute;
+    background-color: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 5px 10px rgba(0,0,0,1);
+    transform: translate(-50%,-50%);
+    top: 35%;
+    left: 60%;
+    padding: 10px 0 0px 0;
+}
+.thongtin-editt {
+    padding: 30px 0 0 65px;
+}
+.thongtin-editt td{
+    padding: 5px 20px;
+    text-align: right;
+}
+.thongtin-editt th{
+    text-align: left;
+}
+
+.thongtin-editt td input{
+    width: 100%;
+    padding: 5px;
+}
+
+.thongtin-editt td .Editt{
+    padding: 5px;
+}
+/* Định dạng custom-select */
+.custom-select {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+    font-size: 16px;
+    color: #333;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><path d="M6 9l6 6 6-6"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .custom-select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+  }
+  
+  .custom-select:hover {
+    border-color: #0056b3;
+  }
+  
+
+.Editt {
+    border: 1px solid #c7c7c7dd;
+    border-radius: 10px;
+    text-align: center;
+    padding: 5px;
+    margin: 15px auto 5px auto;
+    box-shadow: 0 0 3px 3px rgba(0.4,0,0,0.1);
+}
+.Editt a {
+    color: #2d2c2c;
+    text-decoration: none;  
+}
+.Editt:hover {
+    box-shadow: 0 0 5px 5px rgba(0.4,0,0,0.3);
+}
+
+.edittt {
+    box-shadow: 0 0 5px 5px rgba(0.4,0,0,0.3);
+    padding: 10px;
+}
+
+.edittt a {
+    text-decoration: none;
+    padding: 5px;
+    margin: 10px;
+    color: #2d2c2c;
+    font-weight: bolder;
+}
