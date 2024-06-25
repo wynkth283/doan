@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def login
-    nguoidung = Nguoidung.find_by(email: params[:email])
+    nguoidung = Nguoidung.find_by(Email: params[:email])
     if nguoidung && nguoidung.MatKhau == params[:MatKhau]
       session[:nguoidung_id] = nguoidung.id
       redirect_to home_index_path
