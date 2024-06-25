@@ -35,6 +35,18 @@ body{
     position: relative;
     
 }
+.admin-avt img {
+    width: 135px;
+    height: 135px;
+    position: fixed;
+    object-fit: cover;
+    border-radius: 70px;
+    border: 3px solid #7b7b7bdd;
+    background-color: white;
+    box-shadow: 0 5px 10px rgba(84, 84, 84, 0.3);
+    margin-top: 30px;
+    transition: all 0.3s ease;
+}
 
 .admin-avt i {
     width: 135px;
