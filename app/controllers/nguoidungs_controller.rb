@@ -1,7 +1,7 @@
 class NguoidungsController < ApplicationController
   layout 'admin'
   before_action :set_nguoidung, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!
+
   def khach_hang
     @khach_hang = Nguoidung.where(loai_quyen_id: 2)
 
@@ -97,12 +97,5 @@ class NguoidungsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def nguoidung_params
       params.require(:nguoidung).permit(:TenND, :AnhDaiDien, :SDT, :Email, :loai_quyen_id, :MatKhau, :DiaChi)
-    end
-
-    def authenticate_user!
-      unless session[:nguoidung_id]
-        flash[:alert] = 'Bạn cần đăng nhập để truy cập trang này.'
-        redirect_to dang_nhap_index_path
-      end
     end
 end
