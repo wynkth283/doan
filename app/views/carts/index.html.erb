@@ -1,12 +1,17 @@
+<!--views/chi_tiet_sach/index.html.erb-->
 <%= stylesheet_link_tag 'style_carts' %>
 <body id="loginForm">
-<!----------------------Cart-->
     <section class="cart">
         <div class="container">
             <div class="cart-content">
                 <div class="cart-content-left">
                     <div class="headerr">
-                        <p style="padding: 0px 30px 30px 30px; font-weight: bold; font-size: 20px; border-bottom: 1px solid #dddd;"><i class="fa fa-home" aria-hidden="true"></i><%= link_to 'Trang chủ', home_index_path %><%= image_tag 'icon/right-arrow.png', style:"padding-left: 5px" %> Giỏ hàng</p>
+                        <p style="padding: 0px 30px 30px 30px; font-weight: bold; font-size: 20px; border-bottom: 1px solid #dddd;">
+                            <i class="fa fa-home" aria-hidden="true"></i>
+                            <%= link_to 'Trang chủ', home_index_path %>
+                            <%= image_tag 'icon/right-arrow.png', style:"padding-left: 5px" %> 
+                            Giỏ hàng
+                        </p>
                     </div>
                     <table class="cart-table-content" cellspacing="0">
                         <% if @gio_hangs.empty? %>
@@ -14,16 +19,20 @@
                         <% else %>
                             <% @gio_hangs.each do |gio_hang| %>
                                 <tr>
-                                <td><img src="<%= gio_hang.AnhMinhHoa %>"></td>
-                                <td><%= gio_hang.sach_id %></td>
-                                <td><%= gio_hang.TenSach %></td>
-                                <td><%= gio_hang.Gia %>đ</td>
-                                <td><input type="number" id="quantity-<%= gio_hang.id %>" name="quantity" min="1" step="1" value="<%= gio_hang.soluong %>" inputmode="numeric" class="soluong"></td>
-                                <td><%= gio_hang.thanhtien %></td>
-                                <td>
-                                    <span class="luu-row" onclick="updateCartQuantity('<%= gio_hang.id %>', document.getElementById('quantity-<%= gio_hang.id %>').value)" title="Cập nhật giỏ hàng">Lưu</span>
-                                </td>
-                                <td><span class="delete-row" onclick="removeFromCart('<%= gio_hang.id %>')" title="Xóa sản phẩm khỏi giỏ hàng">X</span></td>
+                                    <td><img src="<%= gio_hang.AnhMinhHoa %>"></td>
+                                    <td><%= gio_hang.sach_id %></td>
+                                    <td><%= gio_hang.TenSach %></td>
+                                    <td><%= gio_hang.Gia %>đ</td>
+                                    <td>
+                                        <input type="number" id="quantity-<%= gio_hang.id %>" name="quantity" min="1" step="1" value="<%= gio_hang.soluong %>" inputmode="numeric" class="soluong">
+                                    </td>
+                                    <td><%= gio_hang.thanhtien %></td>
+                                    <td>
+                                        <span class="luu-row" onclick="updateCartQuantity('<%= gio_hang.id %>', document.getElementById('quantity-<%= gio_hang.id %>').value)" title="Cập nhật giỏ hàng">Lưu</span>
+                                    </td>
+                                    <td>
+                                        <span class="delete-row" onclick="removeFromCart('<%= gio_hang.id %>')" title="Xóa sản phẩm khỏi giỏ hàng">X</span>
+                                    </td>
                                 </tr>
                             <% end %>
                         <% end %>
@@ -52,11 +61,14 @@
                         <% end %>
                     </div>
                 </div>
-
             </div>
         </div>   
     </section>
-    <%= alert %>
+
+    <div id="notification">
+        <span id="notification-message"></span>
+    </div>
+
     <script src="JavaScript/script.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -67,34 +79,18 @@
                 data: { quantity: newQuantity },
                 success: function(response) {
                     if (response.success) {
-                        alert(response.message);
-                        location.reload();
+                        sessionStorage.setItem('notificationMessage', response.message);
+                        sessionStorage.setItem('notificationType', 'success');
                     } else {
-                        alert(response.message);
+                        sessionStorage.setItem('notificationMessage', response.message);
+                        sessionStorage.setItem('notificationType', 'error');
                     }
+                    location.reload();
                 },
                 error: function() {
-                    alert('Đã có lỗi xảy ra. Vui lòng thử lại.');
-                }
-            });
-        }
-
-
-        function updateCart(donHangId, newQuantity) {
-            $.ajax({
-                url: '/update_cart/' + donHangId,
-                type: 'POST',
-                data: { new_quantity: newQuantity },
-                success: function(response) {
-                    if (response.success) {
-                        alert(response.message);
-                        location.reload(); // Tải lại trang sau khi cập nhật thành công
-                    } else {
-                        alert(response.message);
-                    }
-                },
-                error: function() {
-                    alert('Đã có lỗi xảy ra. Vui lòng thử lại.');
+                    sessionStorage.setItem('notificationMessage', 'Đã có lỗi xảy ra. Vui lòng thử lại.');
+                    sessionStorage.setItem('notificationType', 'error');
+                    location.reload();
                 }
             });
         }
@@ -105,35 +101,58 @@
                 type: 'DELETE',
                 success: function(response) {
                     if (response.success) {
-                        alert(response.message);
-                        // Xóa hàng khỏi bảng
-                        $('tr[data-id="' + donHangId + '"]').remove();
-                        location.reload();
+                        sessionStorage.setItem('notificationMessage', response.message);
+                        sessionStorage.setItem('notificationType', 'success');
                     } else {
-                        alert(response.message);
-
+                        sessionStorage.setItem('notificationMessage', response.message);
+                        sessionStorage.setItem('notificationType', 'error');
                     }
+                    location.reload();
                 },
                 error: function() {
-                    alert('Đã có lỗi xảy ra. Vui lòng thử lại.');
+                    sessionStorage.setItem('notificationMessage', 'Đã có lỗi xảy ra. Vui lòng thử lại.');
+                    sessionStorage.setItem('notificationType', 'error');
+                    location.reload();
                 }
             });
         }
 
-        function performSearch() {
-            var searchValue = document.getElementById('searchInput').value;
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', '/?search=' + encodeURIComponent(searchValue), true);
-            xhr.onload = function() {
-                if (xhr.status >= 200 && xhr.status < 400) {
-                    document.querySelector('.cart-table-content').innerHTML = xhr.responseText;
-                }
-            };
-            xhr.onerror = function() {
-                // Xử lý lỗi mạng
-                console.error('Request failed');
-            };
-            xhr.send();
+        document.addEventListener("DOMContentLoaded", function() {
+            var notificationMessage = sessionStorage.getItem('notificationMessage');
+            var notificationType = sessionStorage.getItem('notificationType');
+
+            if (notificationMessage && notificationType) {
+                showNotification(notificationMessage, notificationType);
+                sessionStorage.removeItem('notificationMessage');
+                sessionStorage.removeItem('notificationType');
+            }
+
+            document.getElementById("notification-close").addEventListener("click", function() {
+                hideNotification();
+            });
+        });
+
+        function showNotification(message, type) {
+            var notification = document.getElementById("notification");
+            var notificationMessage = document.getElementById("notification-message");
+
+            notificationMessage.textContent = message;
+            notification.classList.add(type);
+            notification.classList.add("show");
+            notification.classList.remove("hide");
+            setTimeout(function() {
+                hideNotification();
+            }, 3000);
         }
-      </script>
+
+        function hideNotification() {
+            var notification = document.getElementById("notification");
+            notification.classList.add("hide");
+            setTimeout(function() {
+                notification.classList.remove("show");
+                notification.classList.remove("success");
+                notification.classList.remove("error");
+            }, 500);
+        }
+    </script>
 </body>

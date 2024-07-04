@@ -45,6 +45,40 @@
                 }
             }
         </style>
+        <style>
+            #notification {
+                display: none;
+                position: fixed;
+                top: 90px;
+                right: 10px;
+                color: white;
+                padding: 10px;
+                border-radius: 5px;
+                opacity: 0;
+                transition: opacity 0.5s ease-in-out;
+            }
+            #notification.success {
+                background: linear-gradient(to right, green, rgb(179, 248, 188));
+            }
+            #notification.error {
+                background: linear-gradient(to right, #f44336, rgb(248, 179, 179));
+            }
+            #notification.show {
+                display: block;
+                opacity: 1;
+            }
+            #notification.hide {
+                opacity: 0;
+            }
+            #notification-close {
+                background: none;
+                border: none;
+                color: white;
+                font-weight: bold;
+                margin-left: 10px;
+                cursor: pointer;
+            }
+        </style>
     </head>
 
     <body>
