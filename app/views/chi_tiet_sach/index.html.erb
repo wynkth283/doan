@@ -22,19 +22,21 @@
                         <tr><th>Nhà xuất bản</th><td class="product-content-center-NXB"><%= @sach.NXB %></td></tr>
                     </table>
 
-                    <%= form_with(url: CTS_them_sach_chi_tiet_sach_path(@sach), method: :post, local: true, html: { class: "add-to-cart-form" }) do |form| %>
-                        <div class="product-content-center-soluong">
-                            <label for="soluong" style="font-weight: bold;">Số lượng</label>
-                            <div class="quantity-button">
-                                <span onclick="decrementValue()" class="tru">-</span>
-                                <%= form.number_field :soluong, min: 1, value: 1, step:"1", inputmode:"numeric", id:"quantity" %>
-                                <span onclick="incrementValue()" class="cong">+</span>
-                            </div>
+                    <%= form_with(url: CTS_them_sach_chi_tiet_sach_path(@sach), method: :post, local: true, html: { class: 'add-to-cart-form' }) do |form| %>
+                    <div class="product-content-center-soluong">
+                        <label for="soluong" style="font-weight: bold;">Số lượng</label>
+                        <div class="quantity-button">
+                        <span onclick="decrementValue()" class="tru">-</span>
+                        <%= form.number_field :soluong, min: 1, value: 1, step: "1", inputmode: "numeric", id: "quantity" %>
+                        <span onclick="incrementValue()" class="cong">+</span>
                         </div>
-                        <div class="product-content-center-button">
-                            <%= form.submit "Thêm vào giỏ hàng", class:"button add-to-cart-button" %>
-                        </div>
+                    </div>
+                    
+                    <div class="product-content-center-button">
+                        <%= form.submit "Thêm vào giỏ hàng", class: "button" %>
+                    </div>
                     <% end %>
+
                     <div class="product-content-center-bottom">
                         <div class="product-content-center-bottom-top">
                         &#8744
@@ -89,47 +91,85 @@
 <div class="flash"></div>
 
 <script>
-    function fadeOut(element) {
-        element.style.animation = 'fade-out 1s forwards';
-        setTimeout(() => {
-            element.style.display = 'none';
-        }, 1500); 
-    }
-
-    function showNotification(message) {
-        const flashContainer = document.querySelector('.flash');
-        flashContainer.innerHTML = `<div class="notice">${message}`;
-        flashContainer.style.display = 'block';
-    }
-
-    // đặt thời gian 3s cho tb
-    setTimeout(() => {
-        fadeOut(flashContainer.querySelector('.notice'));
-    }, 3000);
-
-    document.querySelector('.add-to-cart-form').addEventListener('submit', function(event) {
-        event.preventDefault(); 
-        setTimeout(() => {
-            const quantity = document.getElementById('quantity').value;
-            const notificationMessage = `Đã thêm ${quantity} sản phẩm vào giỏ hàng.`;
-            showNotification(notificationMessage);
-        }, 500);
+/*đánh giá sao*/
+    document.querySelectorAll('.star').forEach(star => {
+        star.addEventListener('click', function() {
+            const value = this.getAttribute('data-value');
+            document.querySelectorAll('.star').forEach(s => {
+                s.classList.remove('selected');
+                if (s.getAttribute('data-value') <= value) {
+                    s.classList.add('selected');
+                }
+            });
+        });
     });
 
-    function incrementValue() {
-        var value = parseInt(document.getElementById('quantity').value, 10);
-        value = isNaN(value) ? 0 : value;
-        value++;
-        document.getElementById('quantity').value = value;
-    }
-
-    function decrementValue() {
-        var value = parseInt(document.getElementById('quantity').value, 10);
-        value = isNaN(value) ? 0 : value;
-        value--;
-        if (value < parseInt(document.getElementById('quantity').min)) {
-            value = parseInt(document.getElementById('quantity').min);
+    document.getElementById('submit-review').addEventListener('click', function() {
+        const selectedStars = document.querySelectorAll('.star.selected').length;
+        const comment = document.getElementById('comment').value;
+        if (selectedStars > 0 && comment.trim() !== '') {
+            const reviewTime = new Date().toLocaleString();
+            document.getElementById('review-time').innerText = `Đánh giá lúc: ${reviewTime}`;
+            document.getElementById('review-time').style.display = 'block';
+            document.querySelector('.no-review').style.display = 'none';
+        } else {
+            alert('Vui lòng nhập bình luận và chọn số sao đánh giá.');
         }
-        document.getElementById('quantity').value = value;
+    });
+
+  function fadeOut(element) {
+    element.style.animation = 'fade-out 1s forwards';
+    setTimeout(() => {
+      element.style.display = 'none';
+    }, 1500); 
+  }
+
+  function showNotification(message) {
+    const flashContainer = document.querySelector('.flash');
+    flashContainer.innerHTML = `<div class="notice">${message}</div>`; 
+    flashContainer.style.display = 'block';
+    
+    // Set a timeout to fade out the notification
+    setTimeout(() => {
+      fadeOut(flashContainer.querySelector('.notice'));
+    }, 3000);
+  }
+
+  document.querySelector('.add-to-cart-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the form from submitting normally
+
+    // Perform AJAX submission here (optional)
+    fetch(this.action, {
+      method: this.method,
+      body: new FormData(this)
+    }).then(response => {
+      if (response.ok) {
+        const quantity = document.getElementById('quantity').value;
+        const notificationMessage = `Đã thêm ${quantity} sản phẩm vào giỏ hàng.`;
+        showNotification(notificationMessage);
+      } else {
+        showNotification('Có lỗi xảy ra khi thêm sách vào giỏ hàng.');
+      }
+    }).catch(error => {
+      console.error('Error:', error);
+      showNotification('Có lỗi xảy ra khi thêm sách vào giỏ hàng.');
+    });
+  });
+
+  function incrementValue() {
+    var value = parseInt(document.getElementById('quantity').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value++;
+    document.getElementById('quantity').value = value;
+  }
+
+  function decrementValue() {
+    var value = parseInt(document.getElementById('quantity').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value--;
+    if (value < parseInt(document.getElementById('quantity').min)) {
+      value = parseInt(document.getElementById('quantity').min);
     }
+    document.getElementById('quantity').value = value;
+  }
 </script>

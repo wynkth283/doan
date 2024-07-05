@@ -1,9 +1,8 @@
 class ChiTietSachController < ApplicationController
   layout 'thanhcongcu'
+
   def index
-    if params[:id]
-      @sach = Sach.find(params[:id])
-    end
+      @sach = Sach.find(params[:id]) if params[:id]
   end
 
   def CTS_them_sach
