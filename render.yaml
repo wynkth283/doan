@@ -7,7 +7,7 @@ databases:
 
 services:
   - type: web
-    name: QuanlyBanSach
+    name: doan
     runtime: ruby
     plan: free
     buildCommand: bundle install; bundle exec rake assets:precompile; bundle exec rake assets:clean;
